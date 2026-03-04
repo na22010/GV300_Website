@@ -1,7 +1,11 @@
-name: "."
-title: "mfeo"
+name: "Natalie Annett"
+title: "Nat's GV300 Website"
 description: |
-  mfeo
+  Hi, my name is Natalie Annett and I am a 3rd Politics and 
+  International Relations student, with a specific interest in 
+  geopolitics. I enjoy reading in my spare time outside of my 
+  academic resposibilities and I particularly enjoy philosophical 
+  books that tend to be intertwined with politics. 
 output_dir: "docs"
 navbar:
   right:
@@ -9,4 +13,9 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
-output: distill::distill_article
+    - text: "Nat"
+      href: nat.html 
+  left: 
+    - text: "Portfolio"
+      href: portfolio.html
+    output: distill::distill_article
