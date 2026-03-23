@@ -9,6 +9,13 @@
       "last_modified": "2026-02-27T12:43:43+00:00"
     },
     {
+      "path": "blog.html",
+      "title": "Portfolio",
+      "author": [],
+      "contents": "\r\n##Assignment 4\r\nSince I have started this module, I have successfully been able to create my own regression tables and graphs while using R.\r\n\r\n\r\n\r\n",
+      "last_modified": "2026-03-23T22:05:35+00:00"
+    },
+    {
       "path": "index.html",
       "title": "Natalie Annett",
       "author": [],
@@ -16,5 +23,5 @@
       "last_modified": "2026-03-23T21:39:04+00:00"
     }
   ],
-  "collections": []
+  "collections": ["posts/posts.json"]
 }
