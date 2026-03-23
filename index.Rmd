@@ -7,7 +7,7 @@ links:
   - label: GitHub
     url: "https://github.com/na22010"
   - label: Email
-    url: "na22010@essex.ac.uk"
+    url: "mailto:annettwannisa@gmail.com"
 output:
   postcards::trestles
 site: distill::distill_website
