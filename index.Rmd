@@ -1,18 +1,35 @@
 ---
-title: "mfeo"
-description: |
-  Welcome to the website. I hope you enjoy it!
+title: "Natalie Annett"
+image: "nat.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/natalie-annett-a94238194/"
+  - label: GitHub
+    url: "https://github.com/na22010"
+  - label: Email
+    url: "na22010@essex.ac.uk"
+output:
+  postcards::trestles
 site: distill::distill_website
 ---
+ 
+## Bio
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+Hi, my name is Natalie Annett and I am a 3rd Politics and 
+  International Relations student, with a specific interest in 
+  geopolitics. I enjoy reading in my spare time outside of my 
+  academic responsibilities and I particularly enjoy philosophical 
+  books that tend to be intertwined with politics. 
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
+## Education
 
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
+**University of Essex** | Colchester, UK
 
-```
+BSc Politics and International Relations | October 2022 - Present
+
+
+
+
+
+
 
