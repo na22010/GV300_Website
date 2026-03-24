@@ -7,35 +7,26 @@ site: distill::distill_website
 
 This is what I have been doing in my previous assignments. Below you will see that I will load the packages needed for the code, as well as the codes that will be essential for the display of the data visualisation. 
 
-
 ```{r setup, eval=TRUE}
-knitr::opts_chunk$set(
-  echo = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width = 8,
-  fig.height = 5
-)
-
-install.packages(c("tidyverse", "ggplot2", "patchwork"))
+knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(ggplot2)
-library(patchwork)
-
 ```
 
-```{r first, eval=TRUE}
+After this, I will demonstrate the code that I needed in order to load the data. In this case the dataset is from the Parliament website and it details voter turnout. The data visualisation I intend to show is the turnout between the different devolved nations. 
+
+```{r dataset}
 uk_csv <- "https://electionresults.parliament.uk/general-elections/6/candidacies.csv"
 uk_raw <- readr::read_csv(uk_csv, show_col_types = FALSE)
 names(uk_raw) <- names(uk_raw) %>% tolower() %>% str_replace_all("\\s+", "_")
 ```
 
+Below here is the code required to form the code to make that data visualisation. 
 
-```{r cleaning, eval=TRUE}
+```{r code}
 uk1 <- uk_raw %>%
   filter(!`election_is_by-election`)
-
 uk2 <- uk1 %>%
   select(
     constituency = constituency_name,
@@ -43,7 +34,6 @@ uk2 <- uk1 %>%
     valid_votes  = candidate_vote_count,
     electorate   = electorate
   )
-
 uk3 <- uk2 %>%
   group_by(country, constituency) %>%
   summarise(
@@ -51,13 +41,14 @@ uk3 <- uk2 %>%
     electorate  = max(electorate, na.rm = TRUE),
     .groups = "drop"
   )
-
 uk <- uk3 %>%
   mutate(turnout_registered = 100 * valid_votes / electorate) %>%
   filter(is.finite(turnout_registered), electorate > 0)
 
-glimpse(uk)
+overall_mean <- mean(uk$valid_votes)
 ```
+
+Here is the code that, using the ggplot2 package, that will create the visualisation demonstrating the turnout for the 4 UK devolved nations. 
 
 
 ```{r plot1, eval=TRUE}

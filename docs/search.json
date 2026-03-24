@@ -6,7 +6,7 @@
       "description": "\nAs part of my degree requirement, I have been developing my quantitative analysis skills through R and I will be showing my progress in my final year project - a policy report - by producing a regression table. The activities I have done in previous assignments will demonstrate the development of my skills.\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2026-03-23T23:06:45+00:00"
+      "last_modified": "2026-03-24T00:57:32+00:00"
     },
     {
       "path": "index.html",
@@ -19,8 +19,8 @@
       "path": "portfolio.html",
       "title": "Portfolio",
       "author": [],
-      "contents": "\r\n##GV300 Progress\r\nThis is what I have been doing in my previous assignments.\r\n\r\n\r\n\r\n",
-      "last_modified": "2026-03-23T23:11:14+00:00"
+      "contents": "\r\n##GV300 Progress\r\nThis is what I have been doing in my previous assignments. Below you will see that I will load the packages needed for the code, as well as the codes that will be essential for the display of the data visualisation.\r\n\r\n\r\nknitr::opts_chunk$set(echo = TRUE)\r\n\r\nlibrary(tidyverse)\r\nlibrary(ggplot2)\r\n\r\n\r\nAfter this, I will demonstrate the code that I needed in order to load the data. In this case the dataset is from the Parliament website and it details voter turnout. The data visualisation I intend to show is the turnout between the different devolved nations.\r\n\r\n\r\nuk_csv <- \"https://electionresults.parliament.uk/general-elections/6/candidacies.csv\"\r\nuk_raw <- readr::read_csv(uk_csv, show_col_types = FALSE)\r\nnames(uk_raw) <- names(uk_raw) %>% tolower() %>% str_replace_all(\"\\\\s+\", \"_\")\r\n\r\n\r\nBelow here is the code required to form the code to make that data visualisation.\r\n\r\n\r\nuk1 <- uk_raw %>%\r\n  filter(!`election_is_by-election`)\r\nuk2 <- uk1 %>%\r\n  select(\r\n    constituency = constituency_name,\r\n    country      = country_name,\r\n    valid_votes  = candidate_vote_count,\r\n    electorate   = electorate\r\n  )\r\nuk3 <- uk2 %>%\r\n  group_by(country, constituency) %>%\r\n  summarise(\r\n    valid_votes = sum(valid_votes, na.rm = TRUE),\r\n    electorate  = max(electorate, na.rm = TRUE),\r\n    .groups = \"drop\"\r\n  )\r\nuk <- uk3 %>%\r\n  mutate(turnout_registered = 100 * valid_votes / electorate) %>%\r\n  filter(is.finite(turnout_registered), electorate > 0)\r\n\r\noverall_mean <- mean(uk$valid_votes)\r\n\r\n\r\nHere is the code that, using the ggplot2 package, that will create the visualisation demonstrating the turnout for the 4 UK devolved nations.\r\n\r\n\r\noverall_mean <- mean(uk$valid_votes)\r\n\r\nggplot(uk, aes(x = valid_votes)) +\r\n  geom_histogram(bins = 25, fill = \"#008080\", colour = \"black\", alpha = 0.7) +\r\n  geom_vline(xintercept = overall_mean, \r\n             color = \"#FF2050\", linetype = \"dashed\", linewidth = 1) +\r\n  facet_wrap(~ country, ncol = 2) +\r\n  labs(\r\n    title = \"Distribution of Constituency Sizes by Country\",\r\n    subtitle = \"Red line shows overall UK mean\",\r\n    x = \"Number of Valid Votes\",\r\n    y = \"Count of Constituencies\"\r\n  ) +\r\n  theme_minimal() +\r\n  theme(\r\n    plot.title = element_text(face = \"bold\", size = 14),\r\n    strip.text = element_text(face = \"bold\")\r\n  )\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2026-03-24T00:58:26+00:00"
     }
   ],
   "collections": ["posts/posts.json"]
