@@ -1,11 +1,9 @@
 ---
 title: "About Me"
 description: |
-  Hi, my name is Natalie Annett and I am a 3rd year Politics and 
-  International Relations student, with a specific interest in 
-  geopolitics. I enjoy reading in my spare time outside of my 
-  academic responsibilities and I particularly enjoy philosophical 
-  books that tend to be intertwined with politics. 
+  
+  As part of my degree requirement, I have been developing my quantitative analysis skills through R and I will be showing my progress in my final year project - a policy report - by producing a regression table. The activities I have done in previous assignments will demonstrate the development of my skills.
+
 
 ---
 
