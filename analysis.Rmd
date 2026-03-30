@@ -1,0 +1,51 @@
+---
+title: "Text Analysis"
+site: distill::distill_website
+
+output: html_document
+---
+
+## What is it?
+
+First, this is the packages that will be needed: 
+
+```{r library, eval=TRUE}
+
+
+library(stringr)
+library(car)
+library(dplyr)
+library(quanteda)
+library(readtext)
+library(quanteda.textmodels)
+
+```
+
+Next, you can see the file I have chosen is from a folder called "Hansard". The files I will be using for this text analysis is the House of Commons debate in regards to the recent scandal surrounding Lord Mandelson and his affiliation to Jeffrey Epstein. Specifically, it entails the conversation surrounding the allegations of Mandelson selling state secrets to Epstein. 
+
+```{r file, eval=TRUE}
+
+filenames <- list.files("Hansard", "\\.txt$") 
+
+``` 
+
+After this, I will now be narrowing down all of this debate to find the information surrounding "documents" as I want to know if the House of Commons did debate about the documents Mandelson has possibly shared with Epstein. This can be seen below: 
+
+
+```{r document, eval=TRUE}
+txts <-  readtext(paste0("Hansard",  "/", "*.txt"))[]
+
+str(txts)
+
+txtCorpus <- corpus(txts)
+head(summary(txtCorpus))
+
+options(width = 30)
+documents <- kwic(tokens(txtCorpus), "documents")
+
+View(documents)
+
+```
+
+
+
