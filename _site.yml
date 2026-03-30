@@ -8,8 +8,10 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Text Analysis"
+      href: analysis.html
   left: 
     - text: "Portfolio"
       href: portfolio.html
-
+      
 output: distill::distill_article
